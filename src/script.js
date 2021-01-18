@@ -42,7 +42,6 @@ const account2 = {
 
 const accounts = [account1, account2];
 
-/////////////////////////////////////////////////
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
@@ -114,11 +113,6 @@ const formatMovementsDate = function (date, locale) {
   if (daysPassed <= 7 && daysPassed > 1) return `${daysPassed} days ago`;
 
   return new Intl.DateTimeFormat(locale).format(date);
-
-  // const day = `${date.getDate()}`.padStart(2, 0);
-  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  // const year = date.getFullYear();
-  // return `${day}/${month}/${year}`;
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -136,9 +130,7 @@ const displayMovements = function (acc, sort = false) {
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+        <div class="movements__type movements__type--${type}">${type}</div>
         <div class="movements__date">${displayDate}</div>
         <div class="movements__value">${formattedMov}</div>
       </div>
@@ -198,18 +190,15 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-///////////////////////////////////////
 // Event handlers
 let currentAccount, timer;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
-
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
